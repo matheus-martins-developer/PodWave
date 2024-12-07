@@ -66,4 +66,19 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //🎨🎨
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.recyclerview:recyclerview:1.3.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
+
+    //🛜🛜
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
+
+    //🖼️🖼️
+    implementation("com.squareup.picasso:picasso:2.71828")
+
+    //🎼🎼
+    implementation("com.google.android.exoplayer:exoplayer:2.18.1")
 }
