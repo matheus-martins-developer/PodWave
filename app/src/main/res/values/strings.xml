@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">PodWave</string>
+
+    <!--Tratativas e Erros-->
+    <string name="invalid_url">A URL inserida parece ser inválida por favor tente novamente com uma nova URL.</string>
+    <string name="empty_url">Você precisa preencher o campo com uma URL.</string>
+
 </resources>
