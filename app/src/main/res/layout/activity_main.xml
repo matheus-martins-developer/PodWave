@@ -6,17 +6,26 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/urlEditText"
+        android:id="@+id/urlEditText_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Insira a URL do feed RSS"
+        android:hint="Insira a URL RSS"
         android:inputType="textUri"
         android:imeOptions="actionDone" />
 
     <Button
-        android:id="@+id/urlButton"
+        android:id="@+id/urlButton_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Carregar Feed"
+        android:text="Carregar Podcast"
         android:layout_marginTop="8dp" />
+
+    <ListView
+        android:id="@+id/urlsListHistory_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp"
+        android:visibility="gone" />
 </LinearLayout>
