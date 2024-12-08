@@ -16,7 +16,7 @@ class EpisodesAdapter(
 
     inner class EpisodeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val view2: View = view
-        private val title: TextView = view.findViewById(R.id.episode_title)
+        private val title: TextView = view.findViewById(R.id.episode_title_layout)
         private val pubDate: TextView = view.findViewById(R.id.episode_date_layout)
         private val imageEpidose: ImageView = view.findViewById(R.id.image_episode_layout)
 
