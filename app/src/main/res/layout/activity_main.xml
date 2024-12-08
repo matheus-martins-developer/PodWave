@@ -5,6 +5,25 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@mipmap/ic_launcher_foreground"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceButton"
+        android:text="Podwave"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_marginVertical="15dp"
+        android:text="Toda conversa merece ser ouvida"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
