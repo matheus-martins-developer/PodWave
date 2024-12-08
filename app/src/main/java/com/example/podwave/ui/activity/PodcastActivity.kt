@@ -66,13 +66,13 @@ class PodcastActivity : AppCompatActivity() {
 
     //▶️▶️
     private fun initVariables() {
-        podcastImage = findViewById(R.id.podcast_image)
-        podcastTitle = findViewById(R.id.podcast_title)
-        podcastCategory = findViewById(R.id.podcast_category)
-        podcastAuthor = findViewById(R.id.podcast_author)
-        podcastDescription = findViewById(R.id.podcast_description)
-        podcastEpisodeSize = findViewById(R.id.podcast_episode_size)
-        episodesRecyclerView = findViewById(R.id.episodes_recycler_view)
+        podcastImage = findViewById(R.id.podcast_image_layout)
+        podcastTitle = findViewById(R.id.podcast_title_layout)
+        podcastCategory = findViewById(R.id.podcast_category_layout)
+        podcastAuthor = findViewById(R.id.podcast_author_layout)
+        podcastDescription = findViewById(R.id.podcast_description_layout)
+        podcastEpisodeSize = findViewById(R.id.podcast_episode_size_layout)
+        episodesRecyclerView = findViewById(R.id.episodes_recycler_view_layout)
     }
 
     //➡️➡️
@@ -85,7 +85,7 @@ class PodcastActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (supportFragmentManager.backStackEntryCount > 0) {
             supportFragmentManager.popBackStack()
-            findViewById<FrameLayout>(R.id.fragment_container).visibility = View.GONE
+            findViewById<FrameLayout>(R.id.fragment_container_layout).visibility = View.GONE
         } else {
             super.onBackPressed()
         }

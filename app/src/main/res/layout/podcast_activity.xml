@@ -12,7 +12,7 @@
         android:padding="16dp">
 
         <ImageView
-            android:id="@+id/podcast_image"
+            android:id="@+id/podcast_image_layout"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_gravity="center"
@@ -20,7 +20,7 @@
             android:src="@drawable/ic_launcher_background" />
 
         <TextView
-            android:id="@+id/podcast_title"
+            android:id="@+id/podcast_title_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -30,7 +30,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/podcast_category"
+            android:id="@+id/podcast_category_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -40,7 +40,7 @@
             android:textStyle="italic" />
 
         <TextView
-            android:id="@+id/podcast_author"
+            android:id="@+id/podcast_author_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -50,7 +50,7 @@
             android:textStyle="italic" />
 
         <TextView
-            android:id="@+id/podcast_episode_size"
+            android:id="@+id/podcast_episode_size_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -60,7 +60,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/podcast_description"
+            android:id="@+id/podcast_description_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -68,7 +68,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/episodes_recycler_view"
+            android:id="@+id/episodes_recycler_view_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -78,7 +78,7 @@
     </LinearLayout>
 
     <FrameLayout
-        android:id="@+id/fragment_container"
+        android:id="@+id/fragment_container_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" />
