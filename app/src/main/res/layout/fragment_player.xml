@@ -3,12 +3,14 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/black"
     android:padding="16dp">
 
     <TextView
         android:id="@+id/episode_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/grey"
         android:text="Título do Episódio"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_marginBottom="16dp" />
