@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.podwave.R
 import com.example.podwave.R.string.parse_error
 import com.example.podwave.R.string.parse_null
-import com.example.podwave.R.string.putExtra_podcast
 import com.example.podwave.data.RssFetcher
 import com.example.podwave.util.RssParser
 import com.example.podwave.util.SharedPreferences
@@ -105,6 +104,7 @@ class MainActivity : AppCompatActivity() {
                 val rssParser = RssParser()
                 val rssFeed = rssParser.parseRss(rssContent)
                 if (rssFeed != null) {
+                    //➡️➡️
                     val intent = Intent(this, PodcastActivity::class.java)
                     intent.putExtra("PODCAST", rssFeed)
                     startActivity(intent)

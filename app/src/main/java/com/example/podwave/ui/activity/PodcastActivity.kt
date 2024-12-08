@@ -2,6 +2,8 @@ package com.example.podwave.ui.activity
 
 import EpisodesAdapter
 import android.os.Bundle
+import android.view.View
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -10,7 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.podwave.R
+import com.example.podwave.data.model.Episode
 import com.example.podwave.data.model.Podcast
+import com.example.podwave.ui.fragment.PlayerFragment
 
 @Suppress("DEPRECATION")
 class PodcastActivity : AppCompatActivity() {
@@ -56,7 +60,7 @@ class PodcastActivity : AppCompatActivity() {
     private fun createEpisodesRecyclerView(podcast: Podcast) {
         episodesRecyclerView.layoutManager = LinearLayoutManager(this)
         episodesRecyclerView.adapter = EpisodesAdapter(podcast.episodes, applicationContext) { selectedIndex ->
-
+            openPlayerFragment(podcast.episodes, selectedIndex)
         }
     }
 
@@ -69,5 +73,21 @@ class PodcastActivity : AppCompatActivity() {
         podcastDescription = findViewById(R.id.podcast_description)
         podcastEpisodeSize = findViewById(R.id.podcast_episode_size)
         episodesRecyclerView = findViewById(R.id.episodes_recycler_view)
+    }
+
+    //➡️➡️
+    private fun openPlayerFragment(episodes: List<Episode>, currentIndex: Int) {
+        val fragment = PlayerFragment.newInstance(episodes, currentIndex)
+        fragment.show(supportFragmentManager, "PlayerFragment")
+    }
+
+    //⬅️⬅️
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            supportFragmentManager.popBackStack()
+            findViewById<FrameLayout>(R.id.fragment_container).visibility = View.GONE
+        } else {
+            super.onBackPressed()
+        }
     }
 }
