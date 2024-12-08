@@ -9,6 +9,8 @@ import org.jsoup.parser.Parser
 class RssParser {
 
     fun parseRss(xml: String): Podcast? {
+
+        //⬅️⬅️
         return try {
 
             val document = Jsoup.parse(xml, "", Parser.xmlParser())
@@ -44,6 +46,7 @@ class RssParser {
     }
 
     private fun parseEpisode(item: Element): Episode {
+
         val title = item.select("itunes\\:title").first()?.text()
             ?: item.select("title").first()?.text() ?: "Sem título"
         val description = item.select("description").first()?.text() ?: "Sem descrição"
@@ -52,6 +55,7 @@ class RssParser {
         val audioUrl = item.select("enclosure").first()?.attr("url") ?: ""
         val imageUrl = item.select("itunes\\:image").first()?.attr("href")
 
+        //⬅️⬅️
         return Episode(
             title = title,
             description = description,

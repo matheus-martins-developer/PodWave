@@ -1,12 +1,17 @@
 package com.example.podwave.ui.activity
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.podwave.R
+import com.example.podwave.R.string.parse_error
+import com.example.podwave.R.string.parse_null
+import com.example.podwave.R.string.putExtra_podcast
 import com.example.podwave.data.RssFetcher
+import com.example.podwave.util.RssParser
 import com.example.podwave.util.SharedPreferences
 
 class MainActivity : AppCompatActivity() {
@@ -28,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         getUrls()
         clicks()
     }
+
     //☝️☝️
     private fun clicks() {
         openUrl.setOnClickListener {
@@ -49,6 +55,7 @@ class MainActivity : AppCompatActivity() {
             fetcherRss(selectedUrl)
         }
     }
+
     //▶️▶️
     private fun initVariables() {
         urlInput = findViewById(R.id.urlEditText_layout)
@@ -56,10 +63,12 @@ class MainActivity : AppCompatActivity() {
         urlsListHistory = findViewById(R.id.urlsListHistory_layout)
 
     }
+
     //☑️☑️
     private fun isValidUrl(url: String): Boolean {
         return Patterns.WEB_URL.matcher(url).matches()
     }
+
     //☑️☑️
     private fun rectifyUrl(url: String): String {
         return if (!url.startsWith("http://") && !url.startsWith("https://")) {
@@ -68,6 +77,7 @@ class MainActivity : AppCompatActivity() {
             url
         }
     }
+
     //⬅️⬅️
     private fun getUrls() {
         val history = sharedPreferences.getUrls().toList()
@@ -80,19 +90,34 @@ class MainActivity : AppCompatActivity() {
             urlsListHistory.visibility = ListView.VISIBLE
         }
     }
+
     //💾💾
     private fun saveUrl(url: String) {
         sharedPreferences.saveUrl(url)
         getUrls()
     }
+
     //🛜🛜
     private fun fetcherRss(url: String) {
         val rssFetcher = RssFetcher(this)
         rssFetcher.fetchRss(url) { rssContent ->
             if (rssContent != null) {
+                val rssParser = RssParser()
+                val rssFeed = rssParser.parseRss(rssContent)
+                if (rssFeed != null) {
+                    val intent = Intent(this, PodcastActivity::class.java)
+                    intent.putExtra("PODCAST", rssFeed)
+                    startActivity(intent)
+                } else {
+                    runOnUiThread {
+                        Toast.makeText(this, parse_error, Toast.LENGTH_SHORT).show()
+                    }
+                }
 
             } else {
-
+                runOnUiThread {
+                    Toast.makeText(this, parse_null, Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
