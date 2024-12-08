@@ -12,11 +12,13 @@ import com.example.podwave.R.string.parse_null
 import com.example.podwave.data.RssFetcher
 import com.example.podwave.util.RssParser
 import com.example.podwave.util.SharedPreferences
+import com.google.android.material.button.MaterialButton
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var urlInput: EditText
-    private lateinit var openUrl: Button
+    private lateinit var openUrl: MaterialButton
+    private lateinit var clearUrls: MaterialButton
     private lateinit var urlsListHistory: ListView
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var urlsListHistoryAdapter: ArrayAdapter<String>
@@ -48,6 +50,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        clearUrls.setOnClickListener{
+            sharedPreferences.clearUrls()
+            urlsListHistory.visibility = ListView.GONE
+            clearUrls.visibility = MaterialButton.GONE
+        }
+
         urlsListHistory.setOnItemClickListener { _, _, position, _ ->
             val selectedUrl = urlsListHistoryAdapter.getItem(position)!!.trim()
             urlInput.setText(selectedUrl)
@@ -58,6 +66,7 @@ class MainActivity : AppCompatActivity() {
     //▶️▶️
     private fun initVariables() {
         urlInput = findViewById(R.id.urlEditText_layout)
+        clearUrls = findViewById(R.id.clearHistory_layout)
         openUrl = findViewById(R.id.urlButton_layout)
         urlsListHistory = findViewById(R.id.urlsListHistory_layout)
 
@@ -85,8 +94,11 @@ class MainActivity : AppCompatActivity() {
 
         if (history.isEmpty()) {
             urlsListHistory.visibility = ListView.GONE
+            clearUrls.visibility = MaterialButton.GONE
         } else {
             urlsListHistory.visibility = ListView.VISIBLE
+            clearUrls.visibility = MaterialButton.VISIBLE
+
         }
     }
 
