@@ -1,24 +1,32 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
 
-    <EditText
-        android:id="@+id/urlEditText_layout"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Insira a URL RSS"
-        android:inputType="textUri"
-        android:imeOptions="actionDone" />
+        android:orientation="vertical"
+        android:gravity="center">
 
-    <Button
-        android:id="@+id/urlButton_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Carregar Podcast"
-        android:layout_marginTop="8dp" />
+        <EditText
+            android:id="@+id/urlEditText_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Insira a URL RSS"
+            android:inputType="textUri"
+            android:imeOptions="actionDone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/urlButton_layout"
+            android:layout_width="match_parent"
+            app:cornerRadius="55dp"
+            android:layout_height="wrap_content"
+            android:text="Carregar Podcast"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
 
     <ListView
         android:id="@+id/urlsListHistory_layout"
@@ -27,5 +35,14 @@
         android:layout_weight="1"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="1dp"
-        android:visibility="gone" />
+        android:visibility="visible" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/clearHistory_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Limpar Histórico"
+        android:backgroundTint="@color/grey"
+        app:cornerRadius="55dp"
+        android:layout_marginTop="8dp" />
 </LinearLayout>
