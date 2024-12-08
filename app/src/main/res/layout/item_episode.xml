@@ -1,23 +1,70 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="8dp">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/episode_title"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Título do Episódio"
-        android:textStyle="bold"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_height="1dp"
+        android:background="@color/black"/>
 
-    <TextView
-        android:id="@+id/episode_date"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:padding="2dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Data de Publicação"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_marginTop="4dp" />
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image_episode_layout"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/ic_launcher_foreground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton_layout"
+            app:layout_constraintStart_toEndOf="@+id/image_episode_layout"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/episode_title_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Título do Episódio"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/episode_date_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Data de Publicação"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:ellipsize="end"
+                android:maxLines="1" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/imageButton_layout"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:background="@drawable/play_button"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
