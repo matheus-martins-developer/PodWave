@@ -2,6 +2,7 @@ package com.example.podwave.data
 
 import android.app.Activity
 import android.content.Context
+import android.util.Patterns
 import android.widget.Toast
 import com.example.podwave.R.string.*
 import okhttp3.OkHttpClient
@@ -15,13 +16,14 @@ class RssFetcher(private val context: Context) {
 
     //🛜🛜
     fun fetchRss(url: String, callback: (String?) -> Unit) {
+
         val request = Request.Builder()
             .url(url)
             .build()
 
         client.newCall(request).enqueue(object : okhttp3.Callback {
             override fun onFailure(call: okhttp3.Call, e: IOException) {
-                showToast(connection_failure.toString())
+                showToast(context.getString(connection_failure))
                 callback(null)
             }
 
@@ -31,11 +33,11 @@ class RssFetcher(private val context: Context) {
                     if (!responseBody.isNullOrEmpty()) {
                         callback(responseBody)
                     } else {
-                        showToast(empty_rss.toString())
+                        showToast(context.getString(empty_rss))
                         callback(null)
                     }
                 } else {
-                    showToast(response_error.toString())
+                    showToast(context.getString(response_error))
                     callback(null)
                 }
             }
@@ -48,5 +50,4 @@ class RssFetcher(private val context: Context) {
             Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
         }
     }
-
 }
