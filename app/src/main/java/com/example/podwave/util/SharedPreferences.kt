@@ -12,17 +12,17 @@ class SharedPreferences(context: Context) {
 
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences(PREF_PODWAVE, Context.MODE_PRIVATE)
-
+    //💾💾
     fun saveUrl(url: String) {
         val urls = getUrls().toMutableSet()
         urls.add(url)
         sharedPreferences.edit().putStringSet(SEARCHED_URLS, urls).apply()
     }
-
+    //⬅️⬅️
     fun getUrls(): Set<String> {
         return sharedPreferences.getStringSet(SEARCHED_URLS, emptySet()) ?: emptySet()
     }
-
+    //🗑️🗑️
     fun clearUrls() {
         sharedPreferences.edit().remove(SEARCHED_URLS).apply()
     }
