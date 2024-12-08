@@ -67,6 +67,14 @@
             android:text="Descrição do Podcast"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/episodes_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:scrollbars="vertical" />
+
     </LinearLayout>
 
 </FrameLayout>

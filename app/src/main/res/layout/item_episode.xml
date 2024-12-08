@@ -1,0 +1,23 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/episode_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Título do Episódio"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/episode_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Data de Publicação"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginTop="4dp" />
+</LinearLayout>
