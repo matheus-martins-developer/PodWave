@@ -2,8 +2,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.podwave.R
 import com.example.podwave.data.model.Episode
 
@@ -13,12 +15,20 @@ class EpisodesAdapter(
     private val onItemClick: (Int) -> Unit) : RecyclerView.Adapter<EpisodesAdapter.EpisodeViewHolder>() {
 
     inner class EpisodeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val view2: View = view
         private val title: TextView = view.findViewById(R.id.episode_title)
-        private val pubDate: TextView = view.findViewById(R.id.episode_date)
+        private val pubDate: TextView = view.findViewById(R.id.episode_date_layout)
+        private val imageEpidose: ImageView = view.findViewById(R.id.image_episode_layout)
 
         fun bind(episode: Episode, position: Int) {
             title.text = episode.title
             pubDate.text = formatPubDate(episode.pubDate)
+            Glide.with(view2)
+                .load(episode.imageUrl)
+                .placeholder(R.mipmap.ic_launcher)
+                .error(R.mipmap.ic_launcher)
+                .into(imageEpidose)
+
             itemView.setOnClickListener {
                 onItemClick(position)
             }
