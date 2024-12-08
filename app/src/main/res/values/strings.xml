@@ -11,5 +11,9 @@
     <string name="connection_failure">Houve um problema na requisção, verifique sua conexão com a internet.</string>
 
 
+    <string name="episode_image_description">Imagem do episódio</string>
+
+
+
 
 </resources>
