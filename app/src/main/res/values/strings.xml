@@ -4,5 +4,8 @@
     <!--Tratativas e Erros-->
     <string name="invalid_url">A URL inserida parece ser inválida por favor tente novamente com uma nova URL.</string>
     <string name="empty_url">Você precisa preencher o campo com uma URL.</string>
+    <string name="empty_rss">A url retornou uma resposta vazia.</string>
+    <string name="response_error">Houve um problema na resposta do servidor, tente mais tarde.</string>
+    <string name="connection_failure">Houve um problema na requisção, verifique sua conexão com a internet.</string>
 
 </resources>
