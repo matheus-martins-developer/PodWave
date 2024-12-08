@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-kapt")
+    id ("kotlin-parcelize")
 }
 
 android {
@@ -78,11 +80,12 @@ dependencies {
 
     //🖼️🖼️
     implementation("com.squareup.picasso:picasso:2.71828")
+    implementation("com.github.bumptech.glide:glide:4.15.0")
+    kapt("com.github.bumptech.glide:compiler:4.15.0")
 
     //🎼🎼
     implementation("com.google.android.exoplayer:exoplayer:2.18.1")
-    
+
     //🍲🍲
     implementation("org.jsoup:jsoup:1.16.1")
-
 }
