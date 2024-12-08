@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        clearUrls.setOnClickListener{
+        clearUrls.setOnClickListener {
             sharedPreferences.clearUrls()
             urlsListHistory.visibility = ListView.GONE
             clearUrls.visibility = MaterialButton.GONE
@@ -111,6 +111,7 @@ class MainActivity : AppCompatActivity() {
     //🛜🛜
     private fun fetcherRss(url: String) {
         val rssFetcher = RssFetcher(this)
+
         rssFetcher.fetchRss(url) { rssContent ->
             if (rssContent != null) {
                 val rssParser = RssParser()
@@ -125,7 +126,6 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this, parse_error, Toast.LENGTH_SHORT).show()
                     }
                 }
-
             } else {
                 runOnUiThread {
                     Toast.makeText(this, parse_null, Toast.LENGTH_SHORT).show()
