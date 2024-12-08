@@ -81,4 +81,8 @@ dependencies {
 
     //🎼🎼
     implementation("com.google.android.exoplayer:exoplayer:2.18.1")
+    
+    //🍲🍲
+    implementation("org.jsoup:jsoup:1.16.1")
+
 }
