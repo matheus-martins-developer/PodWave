@@ -32,7 +32,7 @@
             android:layout_marginEnd="16dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton_layout"
+            app:layout_constraintEnd_toStartOf="@+id/play_layout"
             app:layout_constraintStart_toEndOf="@+id/image_episode_layout"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -58,7 +58,7 @@
         </LinearLayout>
 
         <ImageButton
-            android:id="@+id/imageButton_layout"
+            android:id="@+id/play_layout"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:background="@drawable/play_button"
