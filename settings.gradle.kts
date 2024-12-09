@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 pluginManagement {
     repositories {
         google {
@@ -9,6 +11,9 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
+        mavenCentral()
+        maven(url = "https://jitpack.io")
+        jcenter()
     }
 }
 dependencyResolutionManagement {
@@ -16,6 +21,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        mavenCentral()
+        maven(url = "https://jitpack.io")
+        jcenter()
     }
 }
 
