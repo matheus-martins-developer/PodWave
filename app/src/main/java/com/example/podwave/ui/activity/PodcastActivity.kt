@@ -45,8 +45,8 @@ class PodcastActivity : AppCompatActivity() {
 
     private fun changePodcast(podcast: Podcast) {
         podcastTitle.text = podcast.title
-        podcastCategory.text = podcast.category ?: "Categoria desconhecida"
-        podcastAuthor.text = podcast.author ?: "Autor desconhecido"
+        podcastCategory.text = podcast.category ?: getString(R.string.podcast_categoria_class)
+        podcastAuthor.text = podcast.author ?: getString(R.string.podcast_autor_class)
         podcastDescription.text = podcast.description
         podcastEpisodeSize.text = "Episódios: ${podcast.episodes.size}"
 

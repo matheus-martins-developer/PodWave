@@ -4,17 +4,19 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.airbnb.lottie.LottieAnimationView
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.example.podwave.R
-import com.example.podwave.R.string.parse_error
-import com.example.podwave.R.string.parse_null
 import com.example.podwave.data.RssFetcher
 import com.example.podwave.util.RssParser
 import com.example.podwave.util.SharedPreferences
+import com.example.podwave.util.UIUtil
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 
@@ -27,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var urlsListHistoryAdapter: ArrayAdapter<String>
     private lateinit var loader: LottieAnimationView
-
+    private lateinit var toolbar: Toolbar
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +55,6 @@ class MainActivity : AppCompatActivity() {
                 runOnUiThread {
                     showLoader()
                 }
-                saveUrl(url)
                 fetcherRss(url)
             }
         }
@@ -81,7 +82,6 @@ class MainActivity : AppCompatActivity() {
         openUrl = findViewById(R.id.urlButton_layout)
         urlsListHistory = findViewById(R.id.urlsListHistory_layout)
         loader = findViewById(R.id.loader)
-
     }
 
     //☑️☑️
@@ -91,8 +91,8 @@ class MainActivity : AppCompatActivity() {
 
     //☑️☑️
     private fun rectifyUrl(url: String): String {
-        return if (!url.startsWith("http://") && !url.startsWith("https://")) {
-            "http://$url"
+        return if (!url.startsWith(getString(R.string.rectifyUrl_http)) && !url.startsWith(getString(R.string.rectifyUrl_https))) {
+            getString(R.string.rectifyUrl_http)+"$url"
         } else {
             url
         }
@@ -131,6 +131,9 @@ class MainActivity : AppCompatActivity() {
                 val rssParser = RssParser()
                 val rssFeed = rssParser.parseRss(rssContent)
                 if (rssFeed != null) {
+                    runOnUiThread {
+                        saveUrl(url)
+                    }
                     //➡️➡️
                     val intent = Intent(this, PodcastActivity::class.java)
                     intent.putExtra("PODCAST", rssFeed)
@@ -138,7 +141,19 @@ class MainActivity : AppCompatActivity() {
                     Animatoo.animateSlideLeft(this)
                 } else {
                     runOnUiThread {
-                        Toast.makeText(this, parse_error, Toast.LENGTH_SHORT).show()
+                        UIUtil.showDialog(
+                            context = this,
+                            title = getString(R.string.dialog_tittle_fetcher),
+                            message = rssContent,
+                            titleColor = String.format(
+                                "#%06X",
+                                0xFFFFFF and ContextCompat.getColor(this, R.color.red)
+                            ),
+                            okButtonText = "",
+                            closeButtonText = getString(R.string.dialog_button_1_fetcher),
+                            showOkButton = false,
+                            showCloseButton = true,
+                        )
                     }
                 }
                 runOnUiThread {
@@ -147,7 +162,23 @@ class MainActivity : AppCompatActivity() {
             } else {
                 runOnUiThread {
                     hideLoader()
-                    Toast.makeText(this, parse_null, Toast.LENGTH_SHORT).show()
+                    runOnUiThread {
+                        if (rssContent != null) {
+                            UIUtil.showDialog(
+                                context = this,
+                                title = getString(R.string.dialog_tittle_fetcher),
+                                message = rssContent,
+                                titleColor = String.format(
+                                    "#%06X",
+                                    0xFFFFFF and ContextCompat.getColor(this, R.color.red)
+                                ),
+                                okButtonText = "",
+                                closeButtonText = getString(R.string.dialog_button_1_fetcher),
+                                showOkButton = false,
+                                showCloseButton = true,
+                            )
+                        }
+                    }
                 }
             }
         }
@@ -177,5 +208,40 @@ class MainActivity : AppCompatActivity() {
     fun hideLoader() {
         loader.cancelAnimation()
         loader.visibility = View.GONE
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_settings -> {
+                UIUtil.showDialog(
+                    context = this,
+                    title = getString(R.string.dialog_tittle_cache),
+                    message = getString(R.string.dialog_description_chace),
+                    titleColor= String.format(
+                        "#%06X",
+                        0xFFFFFF and ContextCompat.getColor(this, R.color.red)
+                    ),
+                    okButtonText = getString(R.string.dialog_button_1_chace),
+                    closeButtonText = getString(R.string.dialog_button_2_chace),
+                    showOkButton = true,
+                    showCloseButton = true,
+                    onOkClick = {
+                        runOnUiThread {
+                            Toast.makeText(this, "s!", Toast.LENGTH_SHORT).show()
+                        }
+                    },
+                    onCloseClick = {
+                        Toast.makeText(this, "n!", Toast.LENGTH_SHORT).show()
+                    }
+                )
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
