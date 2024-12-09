@@ -75,6 +75,8 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.3.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
+    implementation("com.airbnb.android:lottie:6.0.0")
+    implementation("com.github.AtifSayings:Animatoo:1.0.1")
 
     //🛜🛜
     implementation("com.squareup.okhttp3:okhttp:4.11.0")
