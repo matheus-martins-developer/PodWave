@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Podwave"
+            android:text="@string/text_tittle"
             android:textAppearance="?android:attr/textAppearanceButton" />
 
         <TextView
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginVertical="15dp"
-            android:text="Toda conversa merece ser ouvida"
+            android:text="@string/text_description"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <LinearLayout
@@ -47,19 +47,25 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
-                    android:hint="Insira a URL RSS"
+                    android:hint="@string/edit_text_url"
                     android:inputType="textUri"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textStyle="normal" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""/>
+
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/urlButton_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Carregar Podcast"
+                android:text="@string/urlButton_layout_text"
                 app:cornerRadius="55dp" />
 
         </LinearLayout>

@@ -10,10 +10,40 @@
     <string name="response_error">Houve um problema na resposta do servidor, tente mais tarde.</string>
     <string name="connection_failure">Houve um problema na requisção, verifique sua conexão com a internet.</string>
 
-    <!--content-->
+    <!--Strings Main Activity Layout-->
+    <string name="clear_history"><u>limpar histórico</u>.</string>
+    <string name="edit_text_url"><u>Insira a URL RSS</u>.</string>
+    <string name="text_tittle"><u>Podwave</u>.</string>
+    <string name="text_description"><u>Toda conversa merece ser ouvida</u>.</string>
+    <string name="urlButton_layout_text"><u>Carregar Podcast</u>.</string>
+
+    <!--Strings Main Activity Class-->
+    <string name="dialog_tittle_fetcher"><u>Atenção Podwaver</u>.</string>
+    <string name="dialog_tittle_cache"><u>Atenção Podwaver</u>.</string>
+    <string name="dialog_description_chace"><u>Deseja limpar o cache do aplicativo?</u>.</string>
+    <string name="dialog_button_1_fetcher"><u>fechar</u>.</string>
+    <string name="dialog_button_1_chace"><u>Sim</u>.</string>
+    <string name="dialog_button_2_chace"><u>Não</u>.</string>
+    <string name="rectifyUrl_http"><u>http://</u>.</string>
+    <string name="rectifyUrl_https"><u>https://</u>.</string>
+
+    <!--Strings Podcast Activity Layout-->
+    <string name="podcast_tittle"><u>Título do Podcast</u>.</string>
+    <string name="podcast_categoria"><u>Categoria do Podcast</u>.</string>
+    <string name="podcast_autor"><u>Autor do Podcast</u>.</string>
+    <string name="podcast_episode_size"><u>Episódios: 0</u>.</string>
+    <string name="podcast_description"><u>Descrição do Podcast</u>.</string>
     <string name="episode_image_description">Imagem do episódio</string>
 
-    <!--Strings Layout-->
-    <string name="clear_history"><u>limpar histórico</u>.</string>
+    <!--Strings Podcast Activity Class-->
+    <string name="podcast_categoria_class"><u>Categoria desconhecida</u>.</string>
+    <string name="podcast_autor_class"><u>Autor desconhecido</u>.</string>
+
+    <!--Episode item Layout-->
+    <string name="episode_tittle"><u>Título do Episódio</u>.</string>
+    <string name="episode_date"><u>Data de Publicação</u>.</string>
+
+
+    <!--Strings Player Fragment Layout-->
 
 </resources>

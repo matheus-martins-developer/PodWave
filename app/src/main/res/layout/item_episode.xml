@@ -40,7 +40,7 @@
                 android:id="@+id/episode_title_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Título do Episódio"
+                android:text="@string/episode_tittle"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold"
                 android:ellipsize="end"
@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Data de Publicação"
+                android:text="@string/episode_date"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:ellipsize="end"
                 android:maxLines="1" />
