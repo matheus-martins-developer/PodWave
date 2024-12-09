@@ -10,10 +10,10 @@
     <string name="response_error">Houve um problema na resposta do servidor, tente mais tarde.</string>
     <string name="connection_failure">Houve um problema na requisção, verifique sua conexão com a internet.</string>
 
-
+    <!--content-->
     <string name="episode_image_description">Imagem do episódio</string>
 
-
-
+    <!--Strings Layout-->
+    <string name="clear_history"><u>limpar histórico</u>.</string>
 
 </resources>
