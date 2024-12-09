@@ -2,6 +2,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +17,7 @@ class EpisodesAdapter(
 
     inner class EpisodeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val view2: View = view
+        private val play: ImageButton = view.findViewById(R.id.play_layout)
         private val title: TextView = view.findViewById(R.id.episode_title_layout)
         private val pubDate: TextView = view.findViewById(R.id.episode_date_layout)
         private val imageEpidose: ImageView = view.findViewById(R.id.image_episode_layout)
@@ -28,6 +30,10 @@ class EpisodesAdapter(
                 .placeholder(R.mipmap.ic_launcher)
                 .error(R.mipmap.ic_launcher)
                 .into(imageEpidose)
+
+            play.setOnClickListener {
+                onItemClick(position)
+            }
 
             itemView.setOnClickListener {
                 onItemClick(position)
