@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.example.podwave.R
 import com.example.podwave.data.model.Episode
@@ -19,7 +20,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 @Suppress("DEPRECATION")
-class PlayerFragment : BottomSheetDialogFragment(){
+class PlayerFragment : BottomSheetDialogFragment() {
 
 
     private var exoplayer: ExoPlayer? = null
@@ -28,6 +29,7 @@ class PlayerFragment : BottomSheetDialogFragment(){
     private lateinit var episodeTitle: TextView
     private var episodeList: List<Episode> = emptyList()
     private var currentEpisodePosition: Int = 0
+    private lateinit var waves: LottieAnimationView
 
     companion object {
         private const val EPISODES_LIST = "episodes_list"
@@ -61,12 +63,15 @@ class PlayerFragment : BottomSheetDialogFragment(){
             player(currentEpisodePosition)
         }
     }
+
     //▶️▶️
     private fun initVariables(view: View) {
-        playerView = view.findViewById(R.id.player)
-        episodeImage = view.findViewById(R.id.episode_image)
-        episodeTitle = view.findViewById(R.id.episode_title)
+        playerView = view.findViewById(R.id.player_layout)
+        episodeImage = view.findViewById(R.id.episode_image_layout)
+        episodeTitle = view.findViewById(R.id.episode_title_layout)
+        waves = view.findViewById(R.id.waves_laout)
     }
+
     //🎼🎼
     private fun player(currentIndex: Int) {
         val currentEpisode = episodeList[currentIndex]
@@ -97,7 +102,20 @@ class PlayerFragment : BottomSheetDialogFragment(){
                 }
             })
         }
+
+        exoplayer!!.addListener(object : Player.Listener {
+            override fun onIsPlayingChanged(isPlaying: Boolean) {
+                super.onIsPlayingChanged(isPlaying)
+                if (isPlaying) {
+                    waves.visibility = View.VISIBLE
+                } else {
+                    waves.visibility = View.INVISIBLE
+                }
+            }
+        })
+
     }
+
     //🔄️🔄️
     private fun updateEpisode(episode: Episode) {
         episodeTitle.text = episode.title
@@ -107,11 +125,13 @@ class PlayerFragment : BottomSheetDialogFragment(){
             .error(R.mipmap.ic_launcher_round)
             .into(episodeImage)
     }
+
     //💬💬
     override fun onCreateDialog(savedInstanceState: Bundle?): BottomSheetDialog {
         val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
         dialog.setOnShowListener {
-            val bottomSheet = dialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+            val bottomSheet =
+                dialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
             bottomSheet?.let {
                 val behavior = BottomSheetBehavior.from(it)
                 behavior.state = BottomSheetBehavior.STATE_EXPANDED
@@ -120,6 +140,7 @@ class PlayerFragment : BottomSheetDialogFragment(){
         }
         return dialog
     }
+
     //⏹️⏹️
     override fun onStop() {
         super.onStop()

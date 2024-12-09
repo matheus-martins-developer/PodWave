@@ -1,31 +1,48 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:background="@color/black"
+    android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/episode_title"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/grey"
-        android:text="Título do Episódio"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_marginBottom="16dp" />
+        android:gravity="center|start"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/episode_title_layout"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:text="Título do Episódio"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/grey" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/waves_laout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="end"
+            android:visibility="visible"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/load_wave" />
+
+    </LinearLayout>
 
     <ImageView
-        android:id="@+id/episode_image"
+        android:id="@+id/episode_image_layout"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        android:contentDescription="@string/episode_image_description" />
+        android:contentDescription="@string/episode_image_description"
+        android:scaleType="centerCrop" />
 
     <com.google.android.exoplayer2.ui.PlayerView
-        android:id="@+id/player"
+        android:id="@+id/player_layout"
         android:layout_width="match_parent"
-        app:show_timeout="0"
-        android:layout_height="100dp" />
+        android:layout_height="100dp"
+        app:show_timeout="0" />
 
 </LinearLayout>
