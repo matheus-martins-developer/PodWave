@@ -20,13 +20,17 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.PodWave">
+        </activity>
+        <activity android:name="com.example.podwave.ui.activity.PodcastActivity" />
+        <activity android:name="com.example.podwave.ui.activity.SplashActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.PodWave">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.podwave.ui.activity.PodcastActivity" />
     </application>
 
 </manifest>
