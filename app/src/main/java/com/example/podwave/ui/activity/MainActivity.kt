@@ -25,11 +25,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var urlInput: TextInputEditText
     private lateinit var openUrl: MaterialButton
     private lateinit var clearUrls: TextView
+    private lateinit var verifyUrl: TextView
     private lateinit var urlsListHistory: ListView
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var urlsListHistoryAdapter: ArrayAdapter<String>
     private lateinit var loader: LottieAnimationView
-    private lateinit var toolbar: Toolbar
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,10 +48,13 @@ class MainActivity : AppCompatActivity() {
             val url = rectifyUrl(urlInput.text.toString().trim())
 
             if (url.isEmpty()) {
-                Toast.makeText(this, R.string.empty_url, Toast.LENGTH_SHORT).show()
+                verifyUrl.visibility = MaterialButton.VISIBLE
+                verifyUrl.text = getString(R.string.empty_url_text)
             } else if (!isValidUrl(url)) {
-                Toast.makeText(this, R.string.invalid_url, Toast.LENGTH_SHORT).show()
+                verifyUrl.visibility = MaterialButton.VISIBLE
+                verifyUrl.text = getString(R.string.invalid_url_text)
             } else {
+                verifyUrl.visibility = MaterialButton.INVISIBLE
                 runOnUiThread {
                     showLoader()
                 }
@@ -79,6 +82,7 @@ class MainActivity : AppCompatActivity() {
     private fun initVariables() {
         urlInput = findViewById(R.id.urlEditText_layout)
         clearUrls = findViewById(R.id.clearHistory_layout)
+        verifyUrl = findViewById(R.id.verify_url)
         openUrl = findViewById(R.id.urlButton_layout)
         urlsListHistory = findViewById(R.id.urlsListHistory_layout)
         loader = findViewById(R.id.loader)
@@ -91,8 +95,8 @@ class MainActivity : AppCompatActivity() {
 
     //☑️☑️
     private fun rectifyUrl(url: String): String {
-        return if (!url.startsWith(getString(R.string.rectifyUrl_http)) && !url.startsWith(getString(R.string.rectifyUrl_https))) {
-            getString(R.string.rectifyUrl_http)+"$url"
+        return if (!url.startsWith("http://") && !url.startsWith("https://")) {
+            "http://$url"
         } else {
             url
         }
