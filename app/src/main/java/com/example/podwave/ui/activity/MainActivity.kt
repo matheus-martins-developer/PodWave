@@ -282,8 +282,9 @@ class MainActivity : AppCompatActivity() {
     fun loadRssFromCache(context: Context, fileName: String = "rss_cache.xml"): String? {
         val file = File(context.cacheDir, fileName)
         return if (file.exists()) file.readText() else null
-    }//💾💾
+    }
 
+    //💾💾
     fun isCacheValid(
         context: Context,
         fileName: String = "rss_cache.xml",
