@@ -5,8 +5,8 @@
 
     <ImageView
         android:id="@+id/logo_layout"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="155dp"
+        android:layout_height="155dp"
         android:layout_gravity="center"
         android:src="@drawable/logtype_podwave"
         android:scaleType="centerInside" />

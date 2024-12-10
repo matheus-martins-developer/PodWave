@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.podwave.R
 import com.example.podwave.data.model.Episode
 import com.example.podwave.data.model.Podcast
@@ -53,6 +54,7 @@ class PodcastActivity : AppCompatActivity() {
 
         Glide.with(this)
             .load(podcast.imageUrl ?: R.drawable.ic_launcher_background)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
             .placeholder(R.drawable.ic_launcher_background)
             .into(podcastImage)
     }

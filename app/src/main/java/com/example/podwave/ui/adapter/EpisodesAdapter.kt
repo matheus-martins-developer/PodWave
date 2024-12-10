@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.podwave.R
 import com.example.podwave.data.model.Episode
 
@@ -28,6 +29,7 @@ class EpisodesAdapter(
             Glide.with(view2)
                 .load(episode.imageUrl)
                 .placeholder(R.mipmap.ic_launcher)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .error(R.mipmap.ic_launcher)
                 .into(imageEpidose)
 

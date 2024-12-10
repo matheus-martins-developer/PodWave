@@ -1,6 +1,7 @@
 package com.example.podwave.ui.activity
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
@@ -12,13 +13,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.airbnb.lottie.LottieAnimationView
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
+import com.bumptech.glide.Glide
 import com.example.podwave.R
 import com.example.podwave.data.RssFetcher
+import com.example.podwave.data.model.Podcast
 import com.example.podwave.util.RssParser
 import com.example.podwave.util.SharedPreferences
 import com.example.podwave.util.UIUtil
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
 
@@ -45,7 +49,7 @@ class MainActivity : AppCompatActivity() {
     //☝️☝️
     private fun clicks() {
         openUrl.setOnClickListener {
-            val url = rectifyUrl(urlInput.text.toString().trim())
+            val url = urlInput.text.toString().trim()
 
             if (url.isEmpty()) {
                 verifyUrl.visibility = MaterialButton.VISIBLE
@@ -58,6 +62,7 @@ class MainActivity : AppCompatActivity() {
                 runOnUiThread {
                     showLoader()
                 }
+                rectifyUrl(url)
                 fetcherRss(url)
             }
         }
@@ -128,39 +133,34 @@ class MainActivity : AppCompatActivity() {
 
     //🛜🛜
     private fun fetcherRss(url: String) {
+
         val rssFetcher = RssFetcher(this)
 
         rssFetcher.fetchRss(url) { rssContent ->
+
+            if (isCacheValid(this)) {
+                loadRssFromCache(this)?.let { cachedData ->
+                    val rssParser = RssParser()
+                    val rssFeed = rssContent?.let { rssParser.parseRss(it) }
+
+                    runOnUiThread {
+                        //➡️➡️
+                        rssContent?.let { openPodcastActivity(rssFeed, url, it) }
+                        hideLoader()
+                    }
+                    return@fetchRss
+                }
+            }
+
             if (rssContent != null) {
                 val rssParser = RssParser()
                 val rssFeed = rssParser.parseRss(rssContent)
-                if (rssFeed != null) {
-                    runOnUiThread {
-                        saveUrl(url)
-                    }
-                    //➡️➡️
-                    val intent = Intent(this, PodcastActivity::class.java)
-                    intent.putExtra("PODCAST", rssFeed)
-                    startActivity(intent)
-                    Animatoo.animateSlideLeft(this)
-                } else {
-                    runOnUiThread {
-                        UIUtil.showDialog(
-                            context = this,
-                            title = getString(R.string.dialog_tittle_fetcher),
-                            message = rssContent,
-                            titleColor = String.format(
-                                "#%06X",
-                                0xFFFFFF and ContextCompat.getColor(this, R.color.red)
-                            ),
-                            okButtonText = "",
-                            closeButtonText = getString(R.string.dialog_button_1_fetcher),
-                            showOkButton = false,
-                            showCloseButton = true,
-                        )
-                    }
-                }
+
+                saveRssToCache(this, rssContent)
+
                 runOnUiThread {
+                    //➡️➡️
+                    openPodcastActivity(rssFeed, url, rssContent)
                     hideLoader()
                 }
             } else {
@@ -186,6 +186,33 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun openPodcastActivity(rssFeed: Podcast?, url: String, rssContent: String) {
+        if (rssFeed != null) {
+            saveUrl(url)
+        } else {
+            runOnUiThread {
+                UIUtil.showDialog(
+                    context = this,
+                    title = getString(R.string.dialog_tittle_fetcher),
+                    message = rssContent,
+                    titleColor = String.format(
+                        "#%06X",
+                        0xFFFFFF and ContextCompat.getColor(this, R.color.red)
+                    ),
+                    okButtonText = "",
+                    closeButtonText = getString(R.string.dialog_button_1_fetcher),
+                    showOkButton = false,
+                    showCloseButton = true,
+                )
+            }
+        }
+
+        val intent = Intent(this, PodcastActivity::class.java)
+        intent.putExtra("PODCAST", rssFeed)
+        startActivity(intent)
+        Animatoo.animateSlideLeft(this)
     }
 
     private fun adjustListViewHeight() {
@@ -226,7 +253,7 @@ class MainActivity : AppCompatActivity() {
                     context = this,
                     title = getString(R.string.dialog_tittle_cache),
                     message = getString(R.string.dialog_description_chace),
-                    titleColor= String.format(
+                    titleColor = String.format(
                         "#%06X",
                         0xFFFFFF and ContextCompat.getColor(this, R.color.red)
                     ),
@@ -236,16 +263,45 @@ class MainActivity : AppCompatActivity() {
                     showCloseButton = true,
                     onOkClick = {
                         runOnUiThread {
-                            Toast.makeText(this, "s!", Toast.LENGTH_SHORT).show()
+                            clearRssCache(this)
+                            Thread {
+                                Glide.get(this).clearDiskCache()
+                            }.start()
+                            Glide.get(this).clearMemory()
                         }
                     },
-                    onCloseClick = {
-                        Toast.makeText(this, "n!", Toast.LENGTH_SHORT).show()
-                    }
                 )
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    //💾💾
+    fun loadRssFromCache(context: Context, fileName: String = "rss_cache.xml"): String? {
+        val file = File(context.cacheDir, fileName)
+        return if (file.exists()) file.readText() else null
+    }//💾💾
+
+    fun isCacheValid(
+        context: Context,
+        fileName: String = "rss_cache.xml",
+        maxAgeMillis: Long = 24 * 60 * 60 * 1000
+    ): Boolean {
+        val file = File(context.cacheDir, fileName)
+        return file.exists() && (System.currentTimeMillis() - file.lastModified() < maxAgeMillis)
+    }
+
+    //💾💾
+    fun saveRssToCache(context: Context, rssContent: String, fileName: String = "rss_cache.xml") {
+        val file = File(context.cacheDir, fileName)
+        file.writeText(rssContent)
+    }
+
+    //🗑️🗑️
+    fun clearRssCache(context: Context, fileName: String = "rss_cache.xml"): Boolean {
+        val file = File(context.cacheDir, fileName)
+        return file.delete()
     }
 }

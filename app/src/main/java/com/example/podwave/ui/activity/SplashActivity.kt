@@ -32,10 +32,11 @@ class SplashActivity : AppCompatActivity() {
             finish()
         }
     }
+
     //🔴🔴
     private fun valueAnimator(): ValueAnimator? {
         val animator = ValueAnimator.ofFloat(0f, 1f)
-        animator.duration = 1500
+        animator.duration = 1300
         animator.interpolator = AccelerateInterpolator()
         animator.interpolator = AccelerateInterpolator()
         animator.addUpdateListener { animation ->
