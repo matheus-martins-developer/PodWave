@@ -1,8 +1,9 @@
+package com.example.podwave.ui.adapter
+
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -15,13 +16,17 @@ import com.example.podwave.R
 import com.example.podwave.data.model.Episode
 
 class EpisodesAdapter(
+    private val context: Context,
     private val episodes: List<Episode>,
+    private val onPlayClick: (Int) -> Unit,
     private val onItemClick: (Int) -> Unit
 ) : RecyclerView.Adapter<EpisodesAdapter.EpisodeViewHolder>() {
 
+    private var currentPlayingIndex: Int? = null
+
     inner class EpisodeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val view2: View = view
-        private val play: ImageButton = view.findViewById(R.id.play_layout)
+        private val play: ImageView = view.findViewById(R.id.play_layout)
         private val title: TextView = view.findViewById(R.id.episode_title_layout)
         private val pubDate: TextView = view.findViewById(R.id.episode_date_layout)
         private val imageEpisode: ImageView = view.findViewById(R.id.image_episode_layout)
@@ -30,7 +35,7 @@ class EpisodesAdapter(
 
         fun bind(episode: Episode, position: Int) {
             title.text = episode.title
-            pubDate.text = formatPubDate(episode.pubDate)
+            pubDate.text = context.getString(R.string.episode_date_text) + " " + formatPubDate(episode.pubDate)
 
             lottieLoading.visibility = View.VISIBLE
             imageEpisode.visibility = View.INVISIBLE
@@ -68,8 +73,15 @@ class EpisodesAdapter(
                 })
                 .into(imageEpisode)
 
+            val isPlaying = position == currentPlayingIndex
+
+            Glide.with(play.context)
+                .load(if (isPlaying) R.drawable.btn_pause else R.drawable.btn_play)
+                .into(play)
+
             play.setOnClickListener {
-                onItemClick(position)
+                onPlayClick(position)
+                updatePlayingState(position)
             }
 
             itemView.setOnClickListener {
@@ -90,6 +102,7 @@ class EpisodesAdapter(
 
     override fun getItemCount(): Int = episodes.size
 
+    //📅📅
     private fun formatPubDate(pubDate: String): String {
         return try {
             val inputFormat =
@@ -101,5 +114,23 @@ class EpisodesAdapter(
         } catch (e: Exception) {
             pubDate
         }
+    }
+
+    //🔄️🔄️
+    private fun updatePlayingState(newPlayingIndex: Int) {
+        val previousIndex = currentPlayingIndex
+        currentPlayingIndex = newPlayingIndex
+
+        previousIndex?.let { notifyItemChanged(it) }
+        notifyItemChanged(newPlayingIndex)
+    }
+
+    //🔄️🔄️
+    fun setPlayingIndex(index: Int?) {
+        val previousIndex = currentPlayingIndex
+        currentPlayingIndex = index
+
+        previousIndex?.let { notifyItemChanged(it) }
+        currentPlayingIndex?.let { notifyItemChanged(it) }
     }
 }
