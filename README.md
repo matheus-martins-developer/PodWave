@@ -44,14 +44,26 @@ Histórico de buscas
 ## Instalação
 
 ### Pré-requisitos
-- Android Studio
+- [Android Studio](https://redirector.gvt1.com/edgedl/android/studio/install/2024.2.1.11/android-studio-2024.2.1.11-windows.exe)
 - [Git](https://git-scm.com/)
 
 ### Passos
+
+Instalar o Android Studio.
+
+Instalar o Git.
+
 Clone o projeto:
+Abra o Android studio, vá em File>New>Project from version control> cole a url de clone abaixo, escolha a pasta para onde o projeto irá ser clonado.
+Após o clone o projeto irá ser sincronizado e depois disso é só rodar utilizando o RUN.
+
 ```bash
 $ git clone https://github.com/matheus-martins-developer/PodWave.git
 ```
+### Download do APK:
+
+[APK Podwave.release V1.0.0](https://github.com/matheus-martins-developer)
+
 ## Autor
 
 Matheus Gabriel Martins
