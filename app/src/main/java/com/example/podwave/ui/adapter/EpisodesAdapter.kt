@@ -6,6 +6,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.podwave.R
@@ -14,24 +15,56 @@ import com.example.podwave.data.model.Episode
 class EpisodesAdapter(
     private val episodes: List<Episode>,
     applicationContext: Context,
-    private val onItemClick: (Int) -> Unit) : RecyclerView.Adapter<EpisodesAdapter.EpisodeViewHolder>() {
+    private val onItemClick: (Int) -> Unit
+) : RecyclerView.Adapter<EpisodesAdapter.EpisodeViewHolder>() {
 
     inner class EpisodeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val view2: View = view
         private val play: ImageButton = view.findViewById(R.id.play_layout)
         private val title: TextView = view.findViewById(R.id.episode_title_layout)
         private val pubDate: TextView = view.findViewById(R.id.episode_date_layout)
-        private val imageEpidose: ImageView = view.findViewById(R.id.image_episode_layout)
+        private val imageEpisode: ImageView = view.findViewById(R.id.image_episode_layout)
+        val lottieLoading: LottieAnimationView = view.findViewById(R.id.image_loading)
+
 
         fun bind(episode: Episode, position: Int) {
             title.text = episode.title
             pubDate.text = formatPubDate(episode.pubDate)
+
+            lottieLoading.visibility = View.VISIBLE
+            imageEpisode.visibility = View.INVISIBLE
+
             Glide.with(view2)
                 .load(episode.imageUrl)
-                .placeholder(R.mipmap.ic_launcher)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .error(R.mipmap.ic_launcher)
-                .into(imageEpidose)
+                .listener(object :
+                    com.bumptech.glide.request.RequestListener<android.graphics.drawable.Drawable> {
+                    override fun onLoadFailed(
+                        e: com.bumptech.glide.load.engine.GlideException?,
+                        model: Any?,
+                        target: com.bumptech.glide.request.target.Target<android.graphics.drawable.Drawable>?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        lottieLoading.visibility = View.GONE
+                        imageEpisode.visibility = View.VISIBLE
+                        imageEpisode.setImageResource(R.mipmap.ic_launcher)
+                        return false
+                    }
+
+                    override fun onResourceReady(
+                        resource: android.graphics.drawable.Drawable?,
+                        model: Any?,
+                        target: com.bumptech.glide.request.target.Target<android.graphics.drawable.Drawable>?,
+                        dataSource: com.bumptech.glide.load.DataSource?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        lottieLoading.visibility = View.GONE
+                        imageEpisode.visibility = View.VISIBLE
+                        return false
+                    }
+                })
+                .into(imageEpisode)
 
             play.setOnClickListener {
                 onItemClick(position)
