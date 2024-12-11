@@ -97,7 +97,7 @@ class PodcastActivity : AppCompatActivity() {
     private fun createEpisodesRecyclerView(podcast: Podcast) {
         episodesRecyclerView.layoutManager = LinearLayoutManager(this)
         episodesRecyclerView.adapter =
-            EpisodesAdapter(podcast.episodes, applicationContext) { selectedIndex ->
+            EpisodesAdapter(podcast.episodes) { selectedIndex ->
                 openPlayerFragment(podcast.episodes, selectedIndex)
             }
     }
