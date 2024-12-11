@@ -11,10 +11,12 @@
     <string name="connection_failure">Houve um problema na requisção, verifique sua conexão com a internet</string>
 
     <!--Strings Main Activity Layout-->
-    <string name="clear_history"><u>limpar histórico</u></string>
+    <string name="clear_history">limpar</string>
     <string name="edit_text_url">Insira a URL RSS</string>
     <string name="text_tittle">Podwave</string>
-    <string name="text_description">Toda conversa merece ser ouvida</string>
+    <string name="text_init">Vamos começar?</string>
+    <string name="text_slogan">Toda conversa merece ser ouvida.</string>
+    <string name="text_history">Seus últimos acessos</string>
     <string name="urlButton_layout_text">Carregar Podcast</string>
 
     <!--Strings Main Activity Class-->

@@ -4,12 +4,17 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.util.Patterns
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.core.content.ContextCompat
 import com.airbnb.lottie.LottieAnimationView
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
@@ -28,9 +33,15 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var urlInput: TextInputEditText
     private lateinit var openUrl: MaterialButton
-    private lateinit var clearUrls: TextView
+
     private lateinit var verifyUrl: TextView
+    private lateinit var slogan: TextView
+    private lateinit var init: TextView
+
+    private lateinit var clearUrls: MaterialButton
+    private lateinit var linear_history: LinearLayout
     private lateinit var urlsListHistory: ListView
+
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var urlsListHistoryAdapter: ArrayAdapter<String>
     private lateinit var loader: LottieAnimationView
@@ -44,6 +55,49 @@ class MainActivity : AppCompatActivity() {
         sharedPreferences = SharedPreferences(this)
         getUrls()
         clicks()
+        textCreator()
+    }
+
+    //🖌️🖌️
+    private fun textCreator() {
+        val sloganText = getString(R.string.text_slogan)
+        val initText = getString(R.string.text_init)
+
+        val spannableSlogan = SpannableString(sloganText)
+        val spannableInit = SpannableString(initText)
+
+        //slogan
+        spannableSlogan.setSpan(
+            ForegroundColorSpan(getColor(R.color.black)),
+            0,
+            sloganText.length - 1,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+
+        spannableSlogan.setSpan(
+            ForegroundColorSpan(getColor(R.color.red)),
+            sloganText.length - 1,
+            sloganText.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+
+        //init
+        spannableInit.setSpan(
+            ForegroundColorSpan(getColor(R.color.black)),
+            0,
+            spannableInit.length - 1,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+
+        spannableInit.setSpan(
+            ForegroundColorSpan(getColor(R.color.red)),
+            spannableInit.length - 1,
+            spannableInit.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+
+        slogan.text = spannableSlogan
+        init.text = spannableInit
     }
 
     //☝️☝️
@@ -61,7 +115,7 @@ class MainActivity : AppCompatActivity() {
                 verifyUrl.visibility = MaterialButton.INVISIBLE
                 runOnUiThread {
                     showLoader()
-                    openUrl.isEnabled = false
+                    buttonsStates(false)
                 }
                 rectifyUrl(url)
                 fetcherRss(url)
@@ -70,8 +124,7 @@ class MainActivity : AppCompatActivity() {
 
         clearUrls.setOnClickListener {
             sharedPreferences.clearUrls()
-            urlsListHistory.visibility = ListView.GONE
-            clearUrls.visibility = MaterialButton.GONE
+            linear_history.visibility = ListView.GONE
         }
 
         urlsListHistory.setOnItemClickListener { _, _, position, _ ->
@@ -79,7 +132,7 @@ class MainActivity : AppCompatActivity() {
             runOnUiThread {
                 showLoader()
             }
-            openUrl.isEnabled = false
+            buttonsStates(false)
             urlInput.setText(selectedUrl)
             fetcherRss(selectedUrl)
         }
@@ -89,10 +142,13 @@ class MainActivity : AppCompatActivity() {
     private fun initVariables() {
         urlInput = findViewById(R.id.urlEditText_layout)
         clearUrls = findViewById(R.id.clearHistory_layout)
-        verifyUrl = findViewById(R.id.verify_url)
+        verifyUrl = findViewById(R.id.verify_url_layout)
+        slogan = findViewById(R.id.slogan_text_layout)
+        init = findViewById(R.id.init_text_layout)
         openUrl = findViewById(R.id.urlButton_layout)
         urlsListHistory = findViewById(R.id.urlsListHistory_layout)
-        loader = findViewById(R.id.loader)
+        linear_history = findViewById(R.id.linear_history_layout)
+        loader = findViewById(R.id.loader_layout)
     }
 
     //☑️☑️
@@ -116,12 +172,9 @@ class MainActivity : AppCompatActivity() {
         urlsListHistory.adapter = urlsListHistoryAdapter
 
         if (history.isEmpty()) {
-            urlsListHistory.visibility = ListView.GONE
-            clearUrls.visibility = MaterialButton.GONE
+            linear_history.visibility = ListView.GONE
         } else {
-            urlsListHistory.visibility = ListView.VISIBLE
-            clearUrls.visibility = MaterialButton.VISIBLE
-
+            linear_history.visibility = ListView.VISIBLE
         }
         adjustListViewHeight()
     }
@@ -150,7 +203,7 @@ class MainActivity : AppCompatActivity() {
                         //➡️➡️
                         rssContent?.let { openPodcastActivity(rssFeed, url, it) }
                         hideLoader()
-                        openUrl.isEnabled = true
+                        buttonsStates(true)
                     }
                     return@fetchRss
                 }
@@ -166,7 +219,7 @@ class MainActivity : AppCompatActivity() {
                     //➡️➡️
                     openPodcastActivity(rssFeed, url, rssContent)
                     hideLoader()
-                    openUrl.isEnabled = true
+                    buttonsStates(true)
                 }
             } else {
                 runOnUiThread {
@@ -201,11 +254,16 @@ class MainActivity : AppCompatActivity() {
                                 showCloseButton = true,
                                 )
                         }
-                        openUrl.isEnabled = true
+                        buttonsStates(true)
                     }
                 }
             }
         }
+    }
+
+    private fun buttonsStates(state: Boolean) {
+        openUrl.isEnabled = state
+        clearUrls.isEnabled = state
     }
 
     private fun openPodcastActivity(rssFeed: Podcast?, url: String, rssContent: String) {

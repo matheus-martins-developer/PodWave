@@ -3,11 +3,14 @@ package com.example.podwave.ui.activity
 import EpisodesAdapter
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.example.podwave.R
 import com.example.podwave.data.model.Episode
 import com.example.podwave.data.model.Podcast
@@ -36,6 +41,7 @@ class PodcastActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.podcast_activity)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         initVariables()
 
@@ -82,6 +88,7 @@ class PodcastActivity : AppCompatActivity() {
 
         Glide.with(this)
             .load(podcast.imageUrl ?: R.drawable.ic_launcher_background)
+            .apply(RequestOptions().transform(RoundedCorners(10)))
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .placeholder(R.drawable.ic_launcher_background)
             .into(podcastImage)
@@ -124,6 +131,19 @@ class PodcastActivity : AppCompatActivity() {
             Animatoo.animateSlideRight(this)
             finish()
             super.onBackPressed()
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                startActivity(Intent(this, MainActivity::class.java))
+                Animatoo.animateSlideRight(this)
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }
