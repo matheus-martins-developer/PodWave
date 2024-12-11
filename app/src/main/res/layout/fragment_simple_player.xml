@@ -10,7 +10,7 @@
             android:id="@+id/waves_laout"
             android:layout_width="50dp"
             android:layout_height="20dp"
-            android:layout_gravity="start"
+            android:layout_gravity="end"
             android:visibility="visible"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
@@ -19,7 +19,7 @@
     <com.google.android.exoplayer2.ui.PlayerView
         android:id="@+id/player_layout"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="90dp"
         app:show_timeout="0" />
 
 </LinearLayout>
