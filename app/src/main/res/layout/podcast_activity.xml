@@ -72,7 +72,6 @@
             </LinearLayout>
         </LinearLayout>
 
-
         <TextView
             android:id="@+id/podcast_description_layout"
             android:layout_width="match_parent"
