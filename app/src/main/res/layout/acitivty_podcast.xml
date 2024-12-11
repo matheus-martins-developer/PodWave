@@ -28,8 +28,7 @@
                     android:layout_height="120dp"
                     android:layout_gravity="top"
                     android:scaleType="centerCrop"
-                    android:background="@drawable/image_backgorund"
-                    android:src="@drawable/logtype_podwave" />
+                    android:src="@drawable/logo_podwave" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

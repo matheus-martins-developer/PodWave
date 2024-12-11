@@ -28,7 +28,7 @@ object UIUtil {
         onCloseClick: (() -> Unit)? = null
     ) {
         val dialog = Dialog(context)
-        dialog.setContentView(R.layout.dialog)
+        dialog.setContentView(R.layout.layout_dialog)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         val titleView = dialog.findViewById<TextView>(R.id.tittle_layout)

@@ -3,6 +3,6 @@
     <item
         android:id="@+id/action_settings"
         android:title="Limpar cache"
-        android:icon="@drawable/gear_icon"
+        android:icon="@drawable/ic_gear_settings"
         app:showAsAction="never" />
 </menu>

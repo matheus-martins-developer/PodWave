@@ -8,7 +8,7 @@
         android:layout_width="155dp"
         android:layout_height="155dp"
         android:layout_gravity="center"
-        android:src="@drawable/logtype_podwave"
+        android:src="@drawable/logo_podwave"
         android:scaleType="centerInside" />
 
     <View
