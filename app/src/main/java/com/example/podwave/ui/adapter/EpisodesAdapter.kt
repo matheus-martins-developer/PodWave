@@ -16,7 +16,6 @@ import com.example.podwave.data.model.Episode
 
 class EpisodesAdapter(
     private val episodes: List<Episode>,
-    applicationContext: Context,
     private val onItemClick: (Int) -> Unit
 ) : RecyclerView.Adapter<EpisodesAdapter.EpisodeViewHolder>() {
 
