@@ -1,6 +1,7 @@
 package com.example.podwave.ui.activity
 
 import android.annotation.SuppressLint
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -12,9 +13,11 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Red
+import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.airbnb.lottie.LottieAnimationView
 import com.blogspot.atifsoftwares.animatoolib.Animatoo
@@ -46,6 +49,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var urlsListHistoryAdapter: ArrayAdapter<String>
     private lateinit var loader: LottieAnimationView
 
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +60,19 @@ class MainActivity : AppCompatActivity() {
         getUrls()
         clicks()
         textCreator()
+        notificationPermission()
+    }
+
+    //💬💬
+    private fun notificationPermission() {
+        val notificationPermissionLauncher =
+            registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+
+            }
+
+        if (!UIUtil.isNotificationPermissionGranted(this)) {
+            UIUtil.requestNotificationPermission(notificationPermissionLauncher)
+        }
     }
 
     //🖌️🖌️
@@ -252,7 +269,7 @@ class MainActivity : AppCompatActivity() {
                                 closeButtonText = getString(R.string.dialog_button_1_fetcher),
                                 showOkButton = false,
                                 showCloseButton = true,
-                                )
+                            )
                         }
                         buttonsStates(true)
                     }
