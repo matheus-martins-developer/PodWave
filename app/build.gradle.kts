@@ -91,4 +91,5 @@ dependencies {
 
     //🍲🍲
     implementation("org.jsoup:jsoup:1.16.1")
+    implementation("com.google.code.gson:gson:2.8.9")
 }
