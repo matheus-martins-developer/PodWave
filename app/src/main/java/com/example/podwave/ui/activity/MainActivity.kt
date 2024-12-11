@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
 
         //slogan
         spannableSlogan.setSpan(
-            ForegroundColorSpan(getColor(R.color.black)),
+            ForegroundColorSpan(getColor(R.color.black_text)),
             0,
             sloganText.length - 1,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
 
         //init
         spannableInit.setSpan(
-            ForegroundColorSpan(getColor(R.color.black)),
+            ForegroundColorSpan(getColor(R.color.black_text)),
             0,
             spannableInit.length - 1,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
