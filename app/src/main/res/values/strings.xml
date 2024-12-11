@@ -23,11 +23,12 @@
     <string name="dialog_tittle_fetcher">Atenção Podwaver</string>
     <string name="dialog_tittle_cache">Atenção Podwaver</string>
     <string name="dialog_description_chace">Deseja limpar o cache do aplicativo?</string>
-    <string name="dialog_button_1_fetcher">fechar.</string>
+    <string name="dialog_button_1_fetcher">fechar</string>
     <string name="dialog_button_1_chace">Sim</string>
     <string name="dialog_button_2_chace">Não</string>
     <string name="invalid_url_text"><u>A url inserida é invalida</u></string>
     <string name="empty_url_text"><u> Preencha o campo da url</u></string>
+    <string name="permission_denied"><u>Sem as permissões o podcast não será executado em segundo plano.</u></string>
 
     <!--Strings Podcast Activity Layout-->
     <string name="podcast_tittle">Título do Podcast</string>
@@ -51,4 +52,9 @@
 
     <!--Strings Player Fragment Layout-->
 
+    <!--Strings PlayerService-->
+    <string name="channel">audio_playback_channel</string>
+    <string name="notification_name">Reprodução de podcast</string>
+    <string name="notification_description">Data de Publicação</string>
+    <string name="notification_tag">Podcast</string>
 </resources>
