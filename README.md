@@ -30,6 +30,17 @@ Recurso de limpar cache
 
 <img src="https://github.com/matheus-martins-developer/PodWave/blob/0a03200b8dc8254a6954c278b097d75eb378e888/app/src/main/res/pictures/screen_clear_cash.jpg" alt="Recurso de limpar cache" width="250"/>
 
+
+## Recursos
+
+Player de podcast
+
+Limpar cache
+
+Modo escuro
+
+Histórico de buscas
+
 ## Instalação
 
 ### Pré-requisitos
