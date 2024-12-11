@@ -29,15 +29,19 @@
 
     <!--Strings Podcast Activity Layout-->
     <string name="podcast_tittle">Título do Podcast</string>
-    <string name="podcast_categoria">Categoria do Podcast</string>
+    <string name="podcast_category">Categoria do Podcast</string>
     <string name="podcast_autor">Autor do Podcast</string>
     <string name="podcast_episode_size">Episódios: 0</string>
     <string name="podcast_description">Descrição do Podcast</string>
     <string name="episode_image_description">Imagem do episódio</string>
 
     <!--Strings Podcast Activity Class-->
-    <string name="podcast_categoria_class">Categoria desconhecida</string>
+    <string name="podcast_category_class">Categoria desconhecida</string>
     <string name="podcast_autor_class">Autor desconhecido</string>
+
+    <!--Strings Main Activity Class-->
+    <string name="dialog_button_back">Voltar</string>
+    <string name="dialog_description_back">Houve um problema ao carregar o podcast.</string>
 
     <!--Episode item Layout-->
     <string name="episode_tittle">Título do Episódio</string>

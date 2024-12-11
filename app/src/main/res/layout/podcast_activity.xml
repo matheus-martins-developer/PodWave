@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:gravity="center"
-            android:text="@string/podcast_categoria"
+            android:text="@string/podcast_category"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="italic" />
 
