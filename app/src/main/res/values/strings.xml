@@ -50,6 +50,9 @@
     <string name="episode_tittle">Título do Episódio</string>
     <string name="episode_date">Data de Publicação</string>
 
+    <!--Episode item -->
+    <string name="episode_date_text">Publicado em</string>
+
     <!--Strings Player Fragment Layout-->
 
     <!--Strings PlayerService-->
