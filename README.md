@@ -53,4 +53,4 @@ Se você tiver alguma dúvida ou sugestão, sinta-se à vontade para abrir uma i
 
 <a href="https://github.com/matheus-martins-developer">
   <img src="https://avatars.githubusercontent.com/u/106721349?v=4" width="150" height="150" />
-</a>](https://github.com/matheus-martins-developer)
+</a>
