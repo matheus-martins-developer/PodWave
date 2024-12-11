@@ -13,9 +13,9 @@ Capturas de tela do projeto.
 
 [Tela inicial](https://github.com/matheus-martins-developer/PodWave/blob/0a03200b8dc8254a6954c278b097d75eb378e888/app/src/main/res/pictures/screen_main.jpg)
 
-[Recurso de limpar cache]([app/src/main/res/pictures/screen_clear_cash.jpg](https://github.com/matheus-martins-developer/PodWave/blob/0a03200b8dc8254a6954c278b097d75eb378e888/app/src/main/res/pictures/screen_clear_cash.jpg))
+[Recurso de limpar cache](https://github.com/matheus-martins-developer/PodWave/blob/0a03200b8dc8254a6954c278b097d75eb378e888/app/src/main/res/pictures/screen_clear_cash.jpg))
 
-[Player]([app/src/main/res/pictures/screen_clear_cash.jpg](https://github.com/matheus-martins-developer/PodWave/blob/0a03200b8dc8254a6954c278b097d75eb378e888/app/src/main/res/pictures/screen_player.jpg))
+[Player](https://github.com/matheus-martins-developer/PodWave/blob/0a03200b8dc8254a6954c278b097d75eb378e888/app/src/main/res/pictures/screen_player.jpg))
 
 [Tela de exibição do podcast](https://github.com/matheus-martins-developer/PodWave/blob/0a03200b8dc8254a6954c278b097d75eb378e888/app/src/main/res/pictures/screen_podcast_activity.jpg)
 
