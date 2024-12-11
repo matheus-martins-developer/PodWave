@@ -1,16 +1,13 @@
 package com.example.podwave.ui.activity
 
-import EpisodesAdapter
+import com.example.podwave.ui.adapter.EpisodesAdapter
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +21,7 @@ import com.example.podwave.R
 import com.example.podwave.data.model.Episode
 import com.example.podwave.data.model.Podcast
 import com.example.podwave.ui.fragment.PlayerFragment
+import com.example.podwave.ui.fragment.SimplePlayerFragment
 import com.example.podwave.util.SharedPreferences
 import com.example.podwave.util.UIUtil
 
@@ -35,12 +33,14 @@ class PodcastActivity : AppCompatActivity() {
     private lateinit var podcastAuthor: TextView
     private lateinit var podcastDescription: TextView
     private lateinit var podcastEpisodeSize: TextView
-    private lateinit var episodesRecyclerView: RecyclerView
+    lateinit var episodesRecyclerView: RecyclerView
     private lateinit var sharedPreferences: SharedPreferences
+    var currentEpisodeIndex: Int? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.podcast_activity)
+        setContentView(R.layout.acitivty_podcast)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         initVariables()
@@ -96,12 +96,19 @@ class PodcastActivity : AppCompatActivity() {
 
     private fun createEpisodesRecyclerView(podcast: Podcast) {
         episodesRecyclerView.layoutManager = LinearLayoutManager(this)
-        episodesRecyclerView.adapter =
-            EpisodesAdapter(podcast.episodes) { selectedIndex ->
+        val adapter = EpisodesAdapter(this,
+            podcast.episodes,
+            onPlayClick = { selectedIndex ->
+                openSimplePlayerFragment(podcast.episodes, selectedIndex)
+            },
+            onItemClick = { selectedIndex ->
                 openPlayerFragment(podcast.episodes, selectedIndex)
             }
-    }
+        )
+        episodesRecyclerView.adapter = adapter
 
+        adapter.setPlayingIndex(currentEpisodeIndex)
+    }
     //▶️▶️
     private fun initVariables() {
         sharedPreferences = SharedPreferences(this)
@@ -119,6 +126,14 @@ class PodcastActivity : AppCompatActivity() {
     private fun openPlayerFragment(episodes: List<Episode>, currentIndex: Int) {
         val fragment = PlayerFragment.newInstance(episodes, currentIndex)
         fragment.show(supportFragmentManager, "PlayerFragment")
+    }
+
+    //➡️➡️
+    private fun openSimplePlayerFragment(episodes: List<Episode>, currentIndex: Int) {
+        currentEpisodeIndex = currentIndex
+        val fragment = SimplePlayerFragment.newInstance(episodes, currentIndex)
+        fragment.show(supportFragmentManager, "SimplePlayerFragment")
+        (episodesRecyclerView.adapter as? EpisodesAdapter)?.setPlayingIndex(currentEpisodeIndex)
     }
 
     //⬅️⬅️
