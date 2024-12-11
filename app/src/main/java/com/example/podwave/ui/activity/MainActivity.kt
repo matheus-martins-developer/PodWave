@@ -139,6 +139,7 @@ class MainActivity : AppCompatActivity() {
         val rssFetcher = RssFetcher(this)
 
         rssFetcher.fetchRss(url) { rssContent ->
+            sharedPreferences.clearPodcast()
 
             if (isCacheValid(this)) {
                 loadRssFromCache(this)?.let { cachedData ->
@@ -228,10 +229,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val intent = Intent(this, PodcastActivity::class.java)
-        intent.putExtra("PODCAST", rssFeed)
-        startActivity(intent)
+        rssFeed?.let { sharedPreferences.savePodcast(it) }
+        startActivity(Intent(this, PodcastActivity::class.java))
         Animatoo.animateSlideLeft(this)
+        finish()
     }
 
     private fun adjustListViewHeight() {
