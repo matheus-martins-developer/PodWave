@@ -61,6 +61,7 @@ class MainActivity : AppCompatActivity() {
                 verifyUrl.visibility = MaterialButton.INVISIBLE
                 runOnUiThread {
                     showLoader()
+                    openUrl.isEnabled = false
                 }
                 rectifyUrl(url)
                 fetcherRss(url)
@@ -78,6 +79,7 @@ class MainActivity : AppCompatActivity() {
             runOnUiThread {
                 showLoader()
             }
+            openUrl.isEnabled = false
             urlInput.setText(selectedUrl)
             fetcherRss(selectedUrl)
         }
@@ -147,6 +149,7 @@ class MainActivity : AppCompatActivity() {
                         //➡️➡️
                         rssContent?.let { openPodcastActivity(rssFeed, url, it) }
                         hideLoader()
+                        openUrl.isEnabled = true
                     }
                     return@fetchRss
                 }
@@ -162,6 +165,7 @@ class MainActivity : AppCompatActivity() {
                     //➡️➡️
                     openPodcastActivity(rssFeed, url, rssContent)
                     hideLoader()
+                    openUrl.isEnabled = true
                 }
             } else {
                 runOnUiThread {
@@ -181,7 +185,22 @@ class MainActivity : AppCompatActivity() {
                                 showOkButton = false,
                                 showCloseButton = true,
                             )
+                        } else {
+                            UIUtil.showDialog(
+                                context = this,
+                                title = getString(R.string.dialog_tittle_fetcher),
+                                message = getString(R.string.parse_null),
+                                titleColor = String.format(
+                                    "#%06X",
+                                    0xFFFFFF and ContextCompat.getColor(this, R.color.red)
+                                ),
+                                okButtonText = "",
+                                closeButtonText = getString(R.string.dialog_button_1_fetcher),
+                                showOkButton = false,
+                                showCloseButton = true,
+                                )
                         }
+                        openUrl.isEnabled = true
                     }
                 }
             }
