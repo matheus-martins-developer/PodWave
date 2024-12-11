@@ -11,13 +11,21 @@ Este projeto é um aplicativo desenvolvido para acessar podcasts apartir de uma 
 ### Demonstração
 Capturas de tela do projeto.
 
-[Tela inicial](https://github.com/matheus-martins-developer/PodWave/blob/0a03200b8dc8254a6954c278b097d75eb378e888/app/src/main/res/pictures/screen_main.jpg)
+Tela inicial
 
-[Recurso de limpar cache](https://github.com/matheus-martins-developer/PodWave/blob/0a03200b8dc8254a6954c278b097d75eb378e888/app/src/main/res/pictures/screen_clear_cash.jpg))
+<img src="https://github.com/matheus-martins-developer/PodWave/blob/0a03200b8dc8254a6954c278b097d75eb378e888/app/src/main/res/pictures/screen_main.jpg" alt="Tela inicial" width="250"/>
 
-[Player](https://github.com/matheus-martins-developer/PodWave/blob/0a03200b8dc8254a6954c278b097d75eb378e888/app/src/main/res/pictures/screen_player.jpg))
+Player
 
-[Tela de exibição do podcast](https://github.com/matheus-martins-developer/PodWave/blob/0a03200b8dc8254a6954c278b097d75eb378e888/app/src/main/res/pictures/screen_podcast_activity.jpg)
+<img src="https://github.com/matheus-martins-developer/PodWave/blob/0a03200b8dc8254a6954c278b097d75eb378e888/app/src/main/res/pictures/screen_player.jpg" alt="Player" width="250"/>
+
+Tela de exibição do podcast
+
+<img src="https://github.com/matheus-martins-developer/PodWave/blob/0a03200b8dc8254a6954c278b097d75eb378e888/app/src/main/res/pictures/screen_podcast_activity.jpg" alt="Tela de exibição do podcast" width="250"/>
+
+Recurso de limpar cache
+
+<img src="https://github.com/matheus-martins-developer/PodWave/blob/0a03200b8dc8254a6954c278b097d75eb378e888/app/src/main/res/pictures/screen_clear_cash.jpg" alt="Recurso de limpar cache" width="250"/>
 
 ## Instalação
 
