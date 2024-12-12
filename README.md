@@ -4,7 +4,7 @@
 Este projeto é um aplicativo desenvolvido para acessar podcasts apartir de uma url de um RSS público. 
 
 <p>
-  <img src="https://img.shields.io/badge/Versão-1.0.0-blue" alt="Versão" />
+  <img src="https://img.shields.io/badge/Versão-1.0.2-blue" alt="Versão" />
 </p>
 
 ---
@@ -62,7 +62,7 @@ $ git clone https://github.com/matheus-martins-developer/PodWave.git
 ```
 ### Download do APK:
 
-[APK Podwave.release V1.0.0](https://github.com/matheus-martins-developer)
+[APK Podwave.release V1.0.0](https://github.com/matheus-martins-developer/PodWave/blob/0e9fde7c693cf677fa1e459216661df2c4494391/app/release/app-release.apk)
 
 ## Autor
 
