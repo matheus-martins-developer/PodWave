@@ -1,7 +1,7 @@
 # PODWAVE
 <p align="start"> <img src="https://github.com/matheus-martins-developer/PodWave/blob/0467f9c7392af4cef2564af95d63e00ca532a123/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" alt="logo" width="50"/> </p>
 
-Este projeto é um aplicativo desenvolvido para acessar podcasts apartir de uma url de um RSS público. 
+Este projeto é um aplicativo desenvolvido para acessar podcasts a partir de uma url de um RSS público. 
 
 <p>
   <img src="https://img.shields.io/badge/Versão-1.0.2-blue" alt="Versão" />
