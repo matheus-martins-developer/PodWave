@@ -75,7 +75,7 @@ $ git clone https://github.com/matheus-martins-developer/PodWave.git
 ```
 ### Download do APK:
 
-[APK Podwave.release V1.0.0](https://github.com/matheus-martins-developer/PodWave/blob/0e9fde7c693cf677fa1e459216661df2c4494391/app/release/app-release.apk)
+[APK Podwave.release V1.0.2](https://github.com/matheus-martins-developer/PodWave/blob/0e9fde7c693cf677fa1e459216661df2c4494391/app/release/app-release.apk)
 
 ### Sugestões de URLS RSS
 
